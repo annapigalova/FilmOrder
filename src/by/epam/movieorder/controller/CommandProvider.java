@@ -6,6 +6,7 @@ import java.util.Map;
 import by.epam.movieorder.controller.command.Command;
 import by.epam.movieorder.controller.command.impl.LogIn;
 import by.epam.movieorder.controller.command.impl.Register;
+import by.epam.movieorder.controller.command.impl.SearchFilm;
 import by.epam.movieorder.controller.command.impl.ShowMovieInfo;
 import by.epam.movieorder.controller.command.impl.ShowShoppingCart;
 
@@ -14,10 +15,12 @@ public final class CommandProvider {
 	private final Map<CommandName, Command> repository = new HashMap<>();
 
 	public CommandProvider() {
-		repository.put(CommandName.LOG_IN, new LogIn());
+		repository.put(CommandName.LOGIN, new LogIn());
 		repository.put(CommandName.REGISTER, new Register());
-		repository.put(CommandName.SHOW_SHOPPING_CART, new ShowShoppingCart());
+		repository.put(CommandName.SHOPPING_CART, new ShowShoppingCart());
 		repository.put(CommandName.SHOW_MOVIE_INFO, new ShowMovieInfo());
+		repository.put(CommandName.SEARCH, new SearchFilm());
+		repository.put(CommandName.ADD_TO_CART, new CreateOrder())
 
 	}
 
@@ -26,13 +29,14 @@ public final class CommandProvider {
 		Command command = null;
 
 		try {
+			//Change logic
 			int indexOfDelimiter = name.length();
 			if (name.contains("?")) {
 				indexOfDelimiter = name.indexOf("?");
 
 			}
 
-			commandName = CommandName.valueOf(name.toUpperCase().replaceAll("-", "_").substring(0, indexOfDelimiter));
+			commandName = CommandName.valueOf(name.toUpperCase().replaceAll(" ", "_").replaceAll("-", "_").substring(0, indexOfDelimiter));
 			command = repository.get(commandName);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			e.printStackTrace();

@@ -13,7 +13,7 @@
 			name="firstName" /><br /> Last Name:<input type="text"
 			name="lastName" /><br /> Email:<input type="text" name="email" /><br />
 		Phone Number:<input type="text" name="phoneNum" /><br /> <input
-			type="submit" name="command" value="register" />
+			type="submit" name="command" value="Register" />
 	</form>
 </body>
 </html>

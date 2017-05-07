@@ -40,7 +40,7 @@ public class ShowShoppingCart implements Command {
 			if (orderList.size() != 0) {
 				
 				System.out.println("User has orders");
-				goTo = "/ShoppingCart.jsp";
+				goTo = "/OrderHistory.jsp";
 
 			} else {
 
@@ -49,7 +49,7 @@ public class ShowShoppingCart implements Command {
 			}
 
 		} catch (ServiceException e) {
-			goTo = "/ShoppingCart.jsp";
+			goTo = "/OrderHistory.jsp";
 
 		}
 

@@ -7,6 +7,7 @@ public class Order {
 
 	private int id;
 	private List<Movie> movieList = new ArrayList<>();
+	private double totalAmount;
 	private boolean isPay;
 
 	public Order() {
@@ -41,6 +42,14 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order # " + id + System.lineSeparator() + movieList + System.lineSeparator() + "isPay= " + isPay;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 }

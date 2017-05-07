@@ -10,7 +10,7 @@ public class Movie {
 	private String director;
 	private String genre;
 	private int duration;
-	private String descritption;
+	private String description;
 	private double price;
 	private List<Comment> commentList = new ArrayList<>();
 	 
@@ -60,12 +60,12 @@ public class Movie {
 		this.duration = duration;
 	}
 
-	public String getDescritption() {
-		return descritption;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescritption(String descritption) {
-		this.descritption = descritption;
+	public void setDescription(String descritption) {
+		this.description = descritption;
 	}
 
 	public double getPrice() {
@@ -95,14 +95,14 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", name=" + name + ", year=" + year + ", director=" + director + ", genre=" + genre
-				+ ", duration=" + duration + ", descritption=" + descritption + ", price=" + price + "]";
+				+ ", duration=" + duration + ", descritption=" + description + ", price=" + price + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((descritption == null) ? 0 : descritption.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((director == null) ? 0 : director.hashCode());
 		result = prime * result + duration;
 		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
@@ -124,10 +124,10 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
-		if (descritption == null) {
-			if (other.descritption != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!descritption.equals(other.descritption))
+		} else if (!description.equals(other.description))
 			return false;
 		if (director == null) {
 			if (other.director != null)

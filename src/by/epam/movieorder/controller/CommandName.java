@@ -1,8 +1,10 @@
 package by.epam.movieorder.controller;
 
 public enum CommandName {
-	LOG_IN,
+	LOGIN,
 	REGISTER,
-	SHOW_SHOPPING_CART,
-	SHOW_MOVIE_INFO
+	SHOPPING_CART,
+	SHOW_MOVIE_INFO,
+	SEARCH,
+	ADD_TO_CART
 }

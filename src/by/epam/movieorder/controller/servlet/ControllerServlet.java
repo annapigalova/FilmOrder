@@ -29,10 +29,11 @@ public class ControllerServlet extends HttpServlet {
 		String commandName = null;
 		Command command = null;
 		String url = null;
+
 		commandName = request.getParameter(COMMAND_NAME);
 		command = provider.getCommand(commandName);
-		System.out.println(commandName);
-		
+		System.out.println(commandName + " Controller");
+
 		try {
 			url = command.execute(request, response);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
@@ -42,11 +43,11 @@ public class ControllerServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-		//	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(PageNames.ERROR_PAGE);
-			//dispatcher.forward(request, response);
+			// RequestDispatcher dispatcher =
+			// getServletContext().getRequestDispatcher(PageNames.ERROR_PAGE);
+			// dispatcher.forward(request, response);
 		}
 	}
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -59,11 +60,11 @@ public class ControllerServlet extends HttpServlet {
 		System.out.println(commandName);
 
 		try {
-			
+
 			url = command.execute(request, response);
 			response.sendRedirect(request.getContextPath() + url);
 		} catch (Exception e) {
-		
+
 		}
 	}
 

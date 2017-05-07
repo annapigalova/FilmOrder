@@ -13,18 +13,19 @@
 	<c:out value="Hello, ${user.login}" />
 	<br />
 	<br />
-	<form method="get">
+	<form method="get" action = "ControllerServlet">
 		<c:forEach items="${orderList}" var="order">
 		Order # ${order.id}<br />
 			<c:forEach items="${order.movieList}" var="movie">
 				<a
-					href="ControllerServlet?command=show-movie-info?moviename=${movie.name}">
+					href="ControllerServlet?command=show-movie-info&movieid=${movie.id}">
 					${movie.name}<br />
 				</a>
 				<br />
 			</c:forEach>
 			<br />
 		</c:forEach>
+		 
 	</form>
 
 </body>

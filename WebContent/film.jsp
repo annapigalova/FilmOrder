@@ -8,24 +8,17 @@
 <title>Film</title>
 </head>
 <body>
-	 <c:out value="Name ${movie.name}" />
- 
-	<br /> Year:
-	<input type="text" name="year" />
-	<br /> Director:
-	<input type="text" name="director" />
-	<br /> Duration min:
-	<input type="text" name="duration" />
-	<br /> Genre:
-	<input type="text" name="genre" />
-	<br /> Price:
-	<input type="text" name="price" />
-	<br /> Description:
-	<input type="text" name="description" />
-	<br />
-	<input type="submit" value="add to cart" />
-	<form method="post" action="ShoppingCart.jsp">
-		<input type="submit" value="Your Shopping Cart" /><br />
+	<c:out value="Name ${movie.name}" />
+	<c:out value="Director ${movie.director}" />
+	<c:out value="Genre ${movie.genre}" />
+	<c:out value="Duration ${movie.duration}" />
+	<c:out value="Description ${movie.description}" />
+	<c:out value="Description ${movie.price}" />
+
+
+	<input type="submit" value="Add to Cart" />
+	<form method="get" action="ControllerServlet">
+		<input type="submit" name="command" value="Shopping Cart" /><br />
 	</form>
 </body>
 </html>

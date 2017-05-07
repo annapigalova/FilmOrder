@@ -51,7 +51,7 @@ public class SQLOrderDao implements OrderDao {
 				}
 				Movie movie = new Movie();
 				// add set field for movie
-
+				movie.setId(result.getInt("movie_id"));
 				movie.setName(result.getString("name"));
 
 				order.addMovie(movie);
