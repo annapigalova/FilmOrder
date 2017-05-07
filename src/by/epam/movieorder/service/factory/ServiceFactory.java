@@ -1,7 +1,9 @@
 package by.epam.movieorder.service.factory;
 
+import by.epam.movieorder.service.MovieService;
 import by.epam.movieorder.service.OrderService;
 import by.epam.movieorder.service.UserService;
+import by.epam.movieorder.service.implementation.MovieServiceImpl;
 import by.epam.movieorder.service.implementation.OrderServiceImpl;
 import by.epam.movieorder.service.implementation.UserServiceImpl;
 
@@ -10,6 +12,7 @@ public final class ServiceFactory {
 
 	private final UserService userService = new UserServiceImpl();
 	private final OrderService orderService = new OrderServiceImpl();
+	private final MovieService movieService = new MovieServiceImpl();
 
 	private ServiceFactory() {
 	}
@@ -24,6 +27,10 @@ public final class ServiceFactory {
 	
 	public OrderService getOrderService() {
 		return orderService;
+	}
+
+	public MovieService getMovieService() {
+		return movieService;
 	}
 
 }

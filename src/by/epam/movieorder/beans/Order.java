@@ -38,4 +38,9 @@ public class Order {
 		this.isPay = isPay;
 	}
 
+	@Override
+	public String toString() {
+		return "Order # " + id + System.lineSeparator() + movieList + System.lineSeparator() + "isPay= " + isPay;
+	}
+
 }

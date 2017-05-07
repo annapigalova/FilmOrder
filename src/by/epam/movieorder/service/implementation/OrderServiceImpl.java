@@ -1,5 +1,8 @@
 package by.epam.movieorder.service.implementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import by.epam.movieorder.beans.Order;
 import by.epam.movieorder.beans.User;
 import by.epam.movieorder.dao.exception.DaoException;
@@ -11,18 +14,16 @@ import by.epam.movieorder.service.exception.ServiceException;
 public class OrderServiceImpl implements OrderService {
 
 	@Override
-	public Order showOrder(User user) throws ServiceException {
-		System.out.println("aaa");
+	public List<Order> showOrder(User user) throws ServiceException {
+ 
 		try {
 
 			DaoFactory daoObjectFactory = DaoFactory.getInstance();
 			OrderDao orderDao = daoObjectFactory.getOrderDao();
-			System.out.println("aaa");
-			Order order = new Order();
+			List <Order> orderList = new ArrayList<>();			
+			orderList = orderDao.showOrder(user);
 			
-			order = orderDao.showOrder(user);
-			System.out.println("aaa after creat orderDao object in service");
-			return order;
+			return orderList;
 
 		} catch (DaoException e) {
 			throw new ServiceException(e);

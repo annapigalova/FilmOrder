@@ -13,15 +13,19 @@ public class Movie {
 	private String descritption;
 	private double price;
 	private List<Comment> commentList = new ArrayList<>();
-	private static int idSequence = 0;
+	 
 
 	public Movie() {
-		idSequence++;
-		id = idSequence;
+		 
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

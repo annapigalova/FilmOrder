@@ -4,11 +4,10 @@ public class Comment {
 	private int id; 
 	private User user; //delete
 	private String comment;
-	private static int idSequence = 0;
+ 
 	
 	public Comment (){
-		idSequence++;
-		id = idSequence;		
+ 	
 	}
 
 	public int getId() {

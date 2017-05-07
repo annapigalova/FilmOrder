@@ -1,7 +1,9 @@
 package by.epam.movieorder.dao.factory;
 
+import by.epam.movieorder.dao.SQLMovieDao;
 import by.epam.movieorder.dao.SQLOrderDao;
 import by.epam.movieorder.dao.SQLUserDao;
+import by.epam.movieorder.dao.interfaces.MovieDao;
 import by.epam.movieorder.dao.interfaces.OrderDao;
 import by.epam.movieorder.dao.interfaces.UserDao;
 
@@ -11,6 +13,8 @@ public final class DaoFactory {
 
 	private final UserDao sqlUserImpl = new SQLUserDao();
 	private final OrderDao sqlOrderImpl = new SQLOrderDao();
+	private final MovieDao sqlMovieImpl = new SQLMovieDao();
+	
 
 	public static DaoFactory getInstance() {
 		return instance;
@@ -22,6 +26,10 @@ public final class DaoFactory {
 
 	public OrderDao getOrderDao() {
 		return sqlOrderImpl;
+	}
+
+	public MovieDao getSqlMovieImpl() {
+		return sqlMovieImpl;
 	}
 
 }

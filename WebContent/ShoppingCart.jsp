@@ -10,8 +10,23 @@
 </head>
 
 <body>
-	<c:out value="User name: ${user.lastName}" />
-  
+	<c:out value="Hello, ${user.login}" />
+	<br />
+	<br />
+	<form method="get">
+		<c:forEach items="${orderList}" var="order">
+		Order # ${order.id}<br />
+			<c:forEach items="${order.movieList}" var="movie">
+				<a
+					href="ControllerServlet?command=show-movie-info?moviename=${movie.name}">
+					${movie.name}<br />
+				</a>
+				<br />
+			</c:forEach>
+			<br />
+		</c:forEach>
+	</form>
+
 </body>
 
 

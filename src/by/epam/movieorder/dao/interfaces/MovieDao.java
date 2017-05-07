@@ -1,9 +1,10 @@
 package by.epam.movieorder.dao.interfaces;
 
 import by.epam.movieorder.beans.Movie;
+import by.epam.movieorder.dao.exception.DaoException;
 
 public interface MovieDao {
-	void addMovie (Movie movie);
-	void deleteMovie (Movie movie);
+
+	Movie showMovieInfo(String name) throws DaoException;
 
 }

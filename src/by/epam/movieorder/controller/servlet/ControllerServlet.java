@@ -26,8 +26,27 @@ public class ControllerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		String commandName = null;
+		Command command = null;
+		String url = null;
+		commandName = request.getParameter(COMMAND_NAME);
+		command = provider.getCommand(commandName);
+		System.out.println(commandName);
+		
+		try {
+			url = command.execute(request, response);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+
+			if (dispatcher != null) {
+				dispatcher.forward(request, response);
+
+			}
+		} catch (Exception e) {
+		//	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(PageNames.ERROR_PAGE);
+			//dispatcher.forward(request, response);
+		}
 	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

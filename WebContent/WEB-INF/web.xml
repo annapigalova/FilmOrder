@@ -27,11 +27,18 @@
 		<servlet-class>by.epam.movieorder.controller.servlet.ProcessLogIn</servlet-class>
 	</servlet>
 
-
-
-
 	<servlet-mapping>
 		<servlet-name>ProcessLogIn</servlet-name>
 		<url-pattern>/ProcessLogIn</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>MoviePage</servlet-name>
+		<jsp-file>/film.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoviePage</servlet-name>
+		<url-pattern>/film</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

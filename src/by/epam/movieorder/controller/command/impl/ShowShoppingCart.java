@@ -1,5 +1,8 @@
 package by.epam.movieorder.controller.command.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,22 +22,26 @@ public class ShowShoppingCart implements Command {
 		String goTo = null;
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		User user = (User) session.getAttribute("user");
- 
+
 		try {
- 
+
 			ServiceFactory serviceFactory = ServiceFactory.getInstance();
- 
+
 			OrderService orderService = serviceFactory.getOrderService();
 			System.out.println(user);
-			Order order = orderService.showOrder(user);
-			System.out.println("aaa");
-		//System.out.println(order);
-			
+			List<Order> orderList = new ArrayList<>();
+			orderList = orderService.showOrder(user);
+			request.setAttribute("orderList", orderList);
 
-			if (order != null) {
+			for (int i = 0; i < orderList.size(); i++) {
+				System.out.println(orderList.get(i));
+			}
+
+			if (orderList.size() != 0) {
+				
 				System.out.println("User has orders");
 				goTo = "/ShoppingCart.jsp";
-			
+
 			} else {
 
 				throw new ServiceException();
@@ -45,7 +52,7 @@ public class ShowShoppingCart implements Command {
 			goTo = "/ShoppingCart.jsp";
 
 		}
- 
+
 		return goTo;
 	}
 

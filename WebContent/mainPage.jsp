@@ -10,7 +10,7 @@
 	<form method="get">	
 		Search Films:<input type="text" name="film" /><br />
 	</form>
-	<form method="post" action="ControllerServlet">
+	<form method="get" action="ControllerServlet">
 		<input type="submit" name = "command" value="show-shopping-cart" /><br />
 	</form>
 </body>
