@@ -5,6 +5,6 @@ import by.epam.movieorder.dao.exception.DaoException;
 
 public interface UserDao {
 	User logIn(String login, String password) throws DaoException;
-	boolean registration(User user) throws DaoException;
+	User registration(User user) throws DaoException;
 
 }

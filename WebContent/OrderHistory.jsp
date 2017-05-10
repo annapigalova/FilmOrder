@@ -13,6 +13,10 @@
 	<c:out value="Hello, ${user.login}" />
 	<br />
 	<br />
+	 
+     <c:if test="${empty orderList}">
+     <c:out value="Unfortunately, you haven't made any orders yet" /> <br /><br />
+     </c:if>
 	<form method="get" action = "ControllerServlet">
 		<c:forEach items="${orderList}" var="order">
 		Order # ${order.id}<br />
@@ -32,7 +36,9 @@
 		<input type="submit" value="Shopping Cart" /><br />
 	</form>
 	
-
+   <form method="get" action="MainPage">
+         <input type="submit" value="Main Page" /> <br />
+      </form>
 </body>
 
 

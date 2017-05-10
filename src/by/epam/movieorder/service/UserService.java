@@ -7,6 +7,6 @@ import by.epam.movieorder.service.exception.ServiceException;
 public interface UserService {
 	
 	User logIn (String login, String password) throws ServiceException;
-	boolean resistration (User user) throws ServiceException;
+	User resistration (User user) throws ServiceException;
 
 }

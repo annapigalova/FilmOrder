@@ -9,13 +9,16 @@
 <body>
 	<h1>Welcome to Cinema World!</h1>
 
-	<form method="get" action="Login">
-		<input type="submit" value="Log In" />
-	</form>
-	<form method="get" action="Register">
-		<input type="submit" value="Register" />
+	<form method="post" action="ControllerServlet">
+		<input type="text" name="login" placeholder="LogIn" /><br /> <input
+			type="text" name="password" placeholder="Password" /><br /> <input
+			type="submit" name="command" value="Login" size = 25 />
 	</form>
 	
+	<form method="get" action="Register">
+		<a href="Register">Register</a>
+	</form>
+
 
 </body>
 </html>

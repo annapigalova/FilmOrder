@@ -35,6 +35,7 @@ public class ControllerServlet extends HttpServlet {
 
 		try {
 			url = command.execute(request);
+			 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 
 			if (dispatcher != null) {

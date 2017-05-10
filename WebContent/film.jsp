@@ -33,7 +33,9 @@
 
 		<input type="hidden" name="movieId" value="${movie.id}" /> <input
 			type="hidden" name="name" value="${movie.name}" /> <input
-			type="hidden" name="price" value="${movie.price}" /> <input
+			type="hidden" name="price" value="${movie.price}" /> 
+			<input
+			type="hidden" name="url" value="command=show-movie-info&movieid=${movie.id}" /><input
 			type="submit" name="command" value="Add to Cart" />
 
 

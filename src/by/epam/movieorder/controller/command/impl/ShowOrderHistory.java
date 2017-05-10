@@ -1,6 +1,5 @@
 package by.epam.movieorder.controller.command.impl;
 
-
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,11 +14,11 @@ public class ShowOrderHistory implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		
+
 		String goTo = null;
-		
+
 		HttpSession session = ((HttpServletRequest) request).getSession();
-		
+
 		User user = (User) session.getAttribute("user");
 
 		try {
@@ -29,15 +28,10 @@ public class ShowOrderHistory implements Command {
 
 			List<Order> orderList = orderService.showOrder(user);
 			request.setAttribute("orderList", orderList);
-
-			if (orderList.size() != 0) {
-
-				goTo = "/OrderHistory.jsp";
-
-			} else {
-
-				throw new ServiceException();
+			for (int i = 0; i < orderList.size(); i++) {
+				System.out.println(orderList.get(i));
 			}
+			goTo = "/OrderHistory.jsp";
 
 		} catch (ServiceException e) {
 			goTo = "/ErrorPage.jsp";

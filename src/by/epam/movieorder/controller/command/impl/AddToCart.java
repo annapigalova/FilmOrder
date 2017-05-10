@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import by.epam.movieorder.beans.Cart;
 import by.epam.movieorder.beans.Movie;
 import by.epam.movieorder.controller.command.Command;
-import by.epam.movieorder.service.exception.ServiceException;
 
 public class AddToCart implements Command {
 
@@ -28,23 +29,25 @@ public class AddToCart implements Command {
 		movie.setId(movieId);
 		movie.setName(name);
 		movie.setPrice(price);
-
+		
+		Cart cart = new Cart();
+		
+		
 		HttpSession session = request.getSession();
 
-		List<Movie> movieList;
+		Object cartSession = session.getAttribute("cart");
 
-		Object movieListAttr = session.getAttribute("movieList");
-		if (movieListAttr == null || !(movieListAttr instanceof List<?>)) {
-			movieList = new ArrayList<>();
+		if (cartSession == null) {
+			cart = new Cart();
 		} else {
-			movieList = (List<Movie>) movieListAttr;
+			cart = (Cart) cartSession;
 		}
 
-		movieList.add(movie);
+		cart.addMovie(movie);
 
-		session.setAttribute("movieList", movieList);
-		
-		return "/Film.jsp";
+		session.setAttribute("cart", cart);
+
+		return request.getRequestURL().append('?').append((request.getParameter("url"))).toString();
 	}
 
 }

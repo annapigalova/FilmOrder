@@ -8,12 +8,62 @@
 </head>
 <body>
 	<form method="post" action="ControllerServlet">
-		Login:<input type="text" name="login" /><br /> Password:<input
-			type="text" name="password" /><br /> First Name:<input type="text"
-			name="firstName" /><br /> Last Name:<input type="text"
-			name="lastName" /><br /> Email:<input type="text" name="email" /><br />
-		Phone Number:<input type="text" name="phoneNum" /><br /> <input
-			type="submit" name="command" value="Register" />
+
+		<table border='0' width='480px' cellpadding='0' cellspacing='0'
+			align='center'>
+			<tr>
+				<td align='center'>Login</td>
+				<td><input type="text" name="login" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align='center'>Password</td>
+				<td><input type="text" name="password" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align='center'>First Name</td>
+				<td><input type="text" name="firstName" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align='center'>Last Name</td>
+				<td><input type="text" name="lastName" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align='center'>Email</td>
+				<td><input type="text" name="email" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align='center'>Phone Number</td>
+				<td><input type="text" name="Register" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<table border='0' cellpadding='0' cellspacing='0' width='480px'
+				align='center'>
+				<tr>
+					<td align='center'><input type="submit" name="command"
+						value="Register" /></td>
+				</tr>
+			</table>
+		</table>
 	</form>
 </body>
 </html>

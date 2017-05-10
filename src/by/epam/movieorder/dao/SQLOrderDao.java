@@ -26,35 +26,37 @@ public class SQLOrderDao implements OrderDao {
 		PreparedStatement prepareSt = null;
 		ResultSet result = null;
 		List<Order> orderList = new ArrayList<>();
-		
+
 		try {
 
 			connection = OracleConnection.getConnection();
-			String query = "SELECT o.order_id as order_id, m.name as name, m.price as price, m.movie_id as movie_id, m.director as director, m.duration as duration, m.genre as genre FROM USERS u left join ORDERS o ON o.user_id = u.user_id left join MOVIES m ON o.movie_id = m.movie_id WHERE  u.user_id =?";
-			
+			String query = "SELECT o.order_id as order_id, m.name as name, m.price as price, m.movie_id as movie_id, m.director as director, m.duration as duration, m.genre as genre FROM USERS u right join ORDERS o ON o.user_id = u.user_id left join MOVIES m ON o.movie_id = m.movie_id WHERE  u.user_id =?";
+
 			prepareSt = connection.prepareStatement(query);
 			prepareSt.setInt(1, user.getId());
 			result = prepareSt.executeQuery();
 
 			Map<Integer, Order> orderMap = new HashMap<>();
+			
+			if (result != null) {
+				while (result.next()) {
 
-			while (result.next()) {
+					int id = result.getInt("order_id");
+					Order order = orderMap.get(id);
+					if (order == null) {
+						order = new Order();
+						order.setId(id);
+					}
 
-				int id = result.getInt("order_id");
-				Order order = orderMap.get(id);
-				if (order == null) {
-					order = new Order();
-					order.setId(id);
+					Movie movie = new Movie();
+
+					movie.setId(result.getInt("movie_id"));
+					movie.setName(result.getString("name"));
+
+					order.addMovie(movie);
+					orderMap.put(id, order);
+
 				}
-				
-				Movie movie = new Movie();
-
-				movie.setId(result.getInt("movie_id"));
-				movie.setName(result.getString("name"));
-
-				order.addMovie(movie);
-				orderMap.put(id, order);
-
 			}
 
 			Collection<Order> c = orderMap.values();
@@ -62,7 +64,7 @@ public class SQLOrderDao implements OrderDao {
 
 			return orderList;
 
-		}  catch (SQLException e) {
+		} catch (SQLException e) {
 
 			throw new DaoException();
 		} finally {
@@ -132,7 +134,7 @@ public class SQLOrderDao implements OrderDao {
 		} finally {
 
 			try {
-				
+
 				if (prepareSt != null) {
 					prepareSt.close();
 				}

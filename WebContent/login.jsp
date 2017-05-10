@@ -6,11 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Log In</title>
 </head>
+
 <body>
-	<form method="post" action="ControllerServlet">
-		Login:<input type="text" name="login" /><br />
-		Password:<input type="text" name="password" /><br />
-		<input type="submit" name = "command" value="Login" /><br />
-	</form>
+
+	
 </body>
 </html>

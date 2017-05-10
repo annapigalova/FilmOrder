@@ -1,6 +1,7 @@
 package by.epam.movieorder.controller.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import by.epam.movieorder.beans.User;
 import by.epam.movieorder.controller.command.Command;
@@ -12,19 +13,21 @@ public class Register implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-
+		
 		String login = request.getParameter("login");
-
+	
 		String password = request.getParameter("password");
-
+	
 		String firstName = request.getParameter("firstName");
-
+		
 		String lastName = request.getParameter("lastName");
-
+		
 		String email = request.getParameter("email");
-
+		
 		String phoneNum = request.getParameter("phoneNum");
-
+		
+		HttpSession session = request.getSession();
+		
 		String goTo = null;
 
 		try {
@@ -45,11 +48,13 @@ public class Register implements Command {
 			user.setEmail(email);
 
 			user.setPhoneNum(phoneNum);
+			
+			user = userService.resistration(user);
+			
+			if (user != null) {
 
-			boolean isRegisterOk = userService.resistration(user);
-
-			if (isRegisterOk) {
-
+				session.setAttribute("user", user);
+			 
 				goTo = "/MainPage.jsp";
 			} else {
 

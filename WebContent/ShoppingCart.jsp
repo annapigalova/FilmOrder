@@ -8,7 +8,7 @@
       <title>ShoppingCart</title>
    </head>
    <body>
-      <c:forEach var="movieList" items="${sessionScope.movieList}">
+      <c:forEach var="movieList" items="${sessionScope.cart.movieList}">
          <tr>
             <td>
                <c:out value="${movieList.name}" />
@@ -19,7 +19,7 @@
          </tr>
       </c:forEach>
       <c:choose>
-         <c:when test="${sessionScope.movieList != null}">
+         <c:when test="${sessionScope.cart.movieList != null}">
             <form method="get" action="ControllerServlet">
                <input type="submit" name="command" value="Order History" /> <br />
                <input type="submit" name="command" value="Pay Order" /><br />

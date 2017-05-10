@@ -34,17 +34,17 @@ public class SQLUserDao implements UserDao {
 				User user = new User();
 
 				user.setId(result.getInt("user_id"));
-				
+
 				user.setFirstName(result.getString("first_name"));
-				
+
 				user.setLastName(result.getString("last_name"));
-				
+
 				user.setPhoneNum(result.getString("phone_num"));
-				
+
 				user.setEmail(result.getString("email"));
-				
+
 				user.setLogin(result.getString("login"));
-				
+
 				user.setPassword(result.getString("password"));
 
 				return user;
@@ -72,29 +72,31 @@ public class SQLUserDao implements UserDao {
 	}
 
 	@Override
-	public boolean registration(User user) throws DaoException {
+	public User registration(User user) throws DaoException {
 
 		Connection connection = null;
 		PreparedStatement selectSt = null;
 		PreparedStatement insertSt = null;
+		PreparedStatement getIdSt = null;
 		ResultSet result = null;
+		ResultSet getIdResult = null;
 
 		try {
 
 			connection = OracleConnection.getConnection();
 			String query = "select login, password, first_name, last_name,	phone_num, email  from users where login=?";
 			selectSt = connection.prepareStatement(query);
-			
+
 			selectSt.setString(1, user.getLogin());
 			result = selectSt.executeQuery();
-			
+
 			connection.setAutoCommit(false);
-			
+
 			if (!result.next()) {
 
 				insertSt = connection.prepareStatement(
 						"INSERT INTO users (user_id, login,  password,  last_name,  first_name,  phone_num,   email,  admin_flg) VALUES(users_seq.NEXTVAL,?,?,?,?,?,?,0)");
-				
+
 				insertSt.setString(1, user.getLogin());
 
 				insertSt.setString(2, user.getPassword());
@@ -106,15 +108,29 @@ public class SQLUserDao implements UserDao {
 				insertSt.setString(5, user.getPhoneNum());
 
 				insertSt.setString(6, user.getEmail());
-		
+
 				insertSt.executeUpdate();
 
 				connection.commit();
 
-				return true;
+				String queryForGetId = "select user_id from users where login=?";
+
+				getIdSt = connection.prepareStatement(queryForGetId);
+
+				getIdSt.setString(1, user.getLogin());
+
+				getIdResult = getIdSt.executeQuery();
+
+				if (getIdResult != null) {
+					while (getIdResult.next()) {
+						int id = getIdResult.getInt("user_id");
+						user.setId(id);
+					}
+				}
+				return user;
 
 			} else {
-				return false;
+				return new User();
 			}
 		} catch (SQLException e) {
 
@@ -122,7 +138,7 @@ public class SQLUserDao implements UserDao {
 		} finally {
 
 			try {
-				
+
 				if (selectSt != null) {
 					selectSt.close();
 				}

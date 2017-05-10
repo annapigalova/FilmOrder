@@ -27,15 +27,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean resistration(User user) throws ServiceException {
+	public User resistration(User user) throws ServiceException {
 		try {
 			
 			DaoFactory daoObjectFactory = DaoFactory.getInstance();
 			UserDao userDao = daoObjectFactory.getUserDao();
-			boolean isRegisterOk = false;
-			isRegisterOk = userDao.registration(user);
+			user = userDao.registration(user);
 			
-			return isRegisterOk;
+			return user;
 
 		} catch (DaoException e) {
 			
