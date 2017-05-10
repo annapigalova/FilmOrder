@@ -18,9 +18,11 @@ public class SQLMovieDao implements MovieDao {
 
 	@Override
 	public Movie showMovieInfo(int movieId) throws DaoException {
+
 		Connection connection = null;
 		PreparedStatement prepareSt = null;
 		ResultSet result = null;
+		Movie movie = new Movie();
 
 		try {
 			connection = OracleConnection.getConnection();
@@ -36,27 +38,39 @@ public class SQLMovieDao implements MovieDao {
 			while (result.next()) {
 
 				String movieName = result.getString("name");
+
 				String director = result.getString("director");
+
 				String genre = result.getString("genre");
+
 				int duration = result.getInt("duration");
+
 				String description = result.getString("description");
+
 				double price = result.getDouble("price");
+
 				String commentText = result.getString("commenttext");
+
 				String comentatorLogin = result.getString("login");
 
-				Movie movie = new Movie();
-
 				movie.setId(movieId);
+
 				movie.setName(movieName);
+
 				movie.setDirector(director);
+
 				movie.setGenre(genre);
+
 				movie.setDuration(duration);
+
 				movie.setDescription(description);
+
 				movie.setPrice(price);
 
-				Comment comment = new Comment();
 				User user = new User();
 				user.setLogin(comentatorLogin);
+
+				Comment comment = new Comment();
 				comment.setUser(user);
 				comment.setComment(commentText);
 
@@ -66,43 +80,74 @@ public class SQLMovieDao implements MovieDao {
 
 			}
 
-			return null;
-
 		} catch (SQLException e) {
-			throw new DaoException(e);
 
+			throw new DaoException(e);
+		} finally {
+
+			try {
+
+				if (prepareSt != null) {
+					prepareSt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+
+				throw new DaoException();
+			}
 		}
+		return movie;
 	}
 
 	@Override
 	public List<Movie> searchMovieByName(String name) throws DaoException {
+
 		Connection connection = null;
 		PreparedStatement prepareSt = null;
 		ResultSet result = null;
+		List<Movie> movieList = new ArrayList<>();
 
 		try {
-			connection = OracleConnection.getConnection();
 
+			connection = OracleConnection.getConnection();
 			String query = "SELECT movie_id, name FROM  movies where upper(name)  like ? ";
 
 			prepareSt = connection.prepareStatement(query);
-
 			prepareSt.setString(1, "%" + name.toUpperCase() + "%");
 
 			result = prepareSt.executeQuery();
-			List<Movie> movieList = new ArrayList<>();
+
 			int i = 0;
 			while (result.next()) {
+
 				movieList.add(new Movie());
+
 				movieList.get(i).setId(result.getInt("movie_id"));
+
 				movieList.get(i).setName(result.getString("name"));
 				i++;
-
 			}
+
 			return movieList;
 		} catch (SQLException e) {
-			throw new DaoException(e);
 
+			throw new DaoException(e);
+		} finally {
+
+			try {
+
+				if (prepareSt != null) {
+					prepareSt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+
+				throw new DaoException();
+			}
 		}
 	}
 }

@@ -3,12 +3,16 @@ package by.epam.movieorder.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+ 
 import by.epam.movieorder.controller.command.Command;
+import by.epam.movieorder.controller.command.impl.AddToCart;
+import by.epam.movieorder.controller.command.impl.MakeComment;
 import by.epam.movieorder.controller.command.impl.LogIn;
+import by.epam.movieorder.controller.command.impl.PayOrder;
 import by.epam.movieorder.controller.command.impl.Register;
 import by.epam.movieorder.controller.command.impl.SearchFilm;
 import by.epam.movieorder.controller.command.impl.ShowMovieInfo;
-import by.epam.movieorder.controller.command.impl.ShowShoppingCart;
+import by.epam.movieorder.controller.command.impl.ShowOrderHistory;
 
 public final class CommandProvider {
 
@@ -17,10 +21,12 @@ public final class CommandProvider {
 	public CommandProvider() {
 		repository.put(CommandName.LOGIN, new LogIn());
 		repository.put(CommandName.REGISTER, new Register());
-		repository.put(CommandName.SHOPPING_CART, new ShowShoppingCart());
+		repository.put(CommandName.ORDER_HISTORY, new ShowOrderHistory());
 		repository.put(CommandName.SHOW_MOVIE_INFO, new ShowMovieInfo());
 		repository.put(CommandName.SEARCH, new SearchFilm());
-		repository.put(CommandName.ADD_TO_CART, new CreateOrder())
+		repository.put(CommandName.ADD_TO_CART, new AddToCart());
+		repository.put(CommandName.PAY_ORDER, new PayOrder());
+		repository.put(CommandName.COMMENT,  new MakeComment());
 
 	}
 

@@ -17,7 +17,7 @@ public class MovieServiceImpl implements MovieService {
 		try {
 
 			DaoFactory daoObjectFactory = DaoFactory.getInstance();
-			MovieDao movieDao = daoObjectFactory.getSqlMovieImpl();
+			MovieDao movieDao = daoObjectFactory.getMovieDao();
 			Movie movie = movieDao.showMovieInfo(movieId);
 
 			return movie;
@@ -33,7 +33,7 @@ public class MovieServiceImpl implements MovieService {
 		try {
 
 			DaoFactory daoObjectFactory = DaoFactory.getInstance();
-			MovieDao movieDao = daoObjectFactory.getSqlMovieImpl();
+			MovieDao movieDao = daoObjectFactory.getMovieDao();
 			List<Movie> movieList = movieDao.searchMovieByName(name);
 
 			return movieList;

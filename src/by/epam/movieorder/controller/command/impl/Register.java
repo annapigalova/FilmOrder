@@ -13,12 +13,17 @@ public class Register implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		String login = request.getParameter("login");
+
 		String password = request.getParameter("password");
+
 		String firstName = request.getParameter("firstName");
+
 		String lastName = request.getParameter("lastName");
+
 		String email = request.getParameter("email");
+
 		String phoneNum = request.getParameter("phoneNum");
 
 		String goTo = null;
@@ -29,28 +34,32 @@ public class Register implements Command {
 			UserService userService = serviceFactory.getUserService();
 
 			User user = new User();
-			
+
 			user.setLogin(login);
+
 			user.setPassword(password);
+
 			user.setFirstName(firstName);
+
 			user.setLastName(lastName);
+
 			user.setEmail(email);
+
 			user.setPhoneNum(phoneNum);
-		//	System.out.println(user);
-			
+
 			boolean isRegisterOk = userService.resistration(user);
-			
+
 			if (isRegisterOk) {
-				
-				goTo = "/mainPage.jsp";
+
+				goTo = "/MainPage.jsp";
 			} else {
-				
+
 				throw new ServiceException();
 			}
 
 		} catch (ServiceException e) {
-			
-			goTo = "/register.jsp";
+
+			goTo = "/Register.jsp";
 		}
 		return goTo;
 

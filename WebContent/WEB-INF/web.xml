@@ -21,24 +21,48 @@
 		<servlet-name>ControllerServlet</servlet-name>
 		<url-pattern>/ControllerServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<jsp-file>/Login.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Register</servlet-name>
+		<jsp-file>/Register.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/Register</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>ProcessLogIn</servlet-name>
-		<servlet-class>by.epam.movieorder.controller.servlet.ProcessLogIn</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ProcessLogIn</servlet-name>
-		<url-pattern>/ProcessLogIn</url-pattern>
-	</servlet-mapping>
-	
-		<servlet>
 		<servlet-name>MoviePage</servlet-name>
-		<jsp-file>/film.jsp</jsp-file>
+		<jsp-file>/Film.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MoviePage</servlet-name>
-		<url-pattern>/film</url-pattern>
+		<url-pattern>/Film</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ShoppingCart</servlet-name>
+		<jsp-file>/ShoppingCart.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShoppingCart</servlet-name>
+		<url-pattern>/ShoppingCart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MainPage</servlet-name>
+		<jsp-file>/MainPage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MainPage</servlet-name>
+		<url-pattern>/MainPage</url-pattern>
+	</servlet-mapping>
 </web-app>

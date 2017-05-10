@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +31,6 @@ public class ControllerServlet extends HttpServlet {
 
 		commandName = request.getParameter(COMMAND_NAME);
 		command = provider.getCommand(commandName);
-		System.out.println(commandName + " Controller");
 
 		try {
 			url = command.execute(request, response);
@@ -43,26 +41,30 @@ public class ControllerServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			// RequestDispatcher dispatcher =
-			// getServletContext().getRequestDispatcher(PageNames.ERROR_PAGE);
-			// dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String commandName = null;
 		Command command = null;
 		String url = null;
 
 		commandName = request.getParameter(COMMAND_NAME);
 		command = provider.getCommand(commandName);
-		System.out.println(commandName);
 
 		try {
 
 			url = command.execute(request, response);
-			response.sendRedirect(request.getContextPath() + url);
+			if (commandName == "Comment") {
+
+				response.setHeader("Refresh", "0; URL=" + request.getContextPath() + url);
+			} else {
+				response.sendRedirect(request.getContextPath() + url);
+			}
 		} catch (Exception e) {
 
 		}

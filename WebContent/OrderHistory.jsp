@@ -27,6 +27,11 @@
 		</c:forEach>
 		 
 	</form>
+	
+	<form method="get" action="ShoppingCart">
+		<input type="submit" value="Shopping Cart" /><br />
+	</form>
+	
 
 </body>
 

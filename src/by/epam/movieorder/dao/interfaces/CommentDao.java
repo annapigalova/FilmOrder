@@ -1,10 +1,11 @@
 package by.epam.movieorder.dao.interfaces;
 
-import by.epam.movieorder.beans.Comment;
+import by.epam.movieorder.beans.User;
+import by.epam.movieorder.dao.exception.DaoException;
 
 public interface CommentDao {
-	void addComment(Comment comment);
+	boolean addComment(String text, User user, int movieId) throws DaoException;
 
-	void deleteComment(Comment comment);
+//	void deleteComment(Comment comment) throws DaoException;
 
 }

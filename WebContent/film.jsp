@@ -8,17 +8,32 @@
 <title>Film</title>
 </head>
 <body>
-	<c:out value="Name ${movie.name}" />
-	<c:out value="Director ${movie.director}" />
-	<c:out value="Genre ${movie.genre}" />
-	<c:out value="Duration ${movie.duration}" />
-	<c:out value="Description ${movie.description}" />
-	<c:out value="Description ${movie.price}" />
-
-
-	<input type="submit" value="Add to Cart" />
 	<form method="get" action="ControllerServlet">
-		<input type="submit" name="command" value="Shopping Cart" /><br />
+		<c:out value="Name ${movie.name}" />
+		<c:out value="Director ${movie.director}" />
+		<c:out value="Genre ${movie.genre}" />
+		<c:out value="Duration ${movie.duration}" />
+		<c:out value="Description ${movie.description}" />
+		<c:out value="Description ${movie.price}" />
+		<input type="hidden" name="movieId" value="${movie.id}" /> <input
+			type="hidden" name="name" value="${movie.name}" /> <input
+			type="hidden" name="price" value="${movie.price}" /> <input
+			type="submit" name="command" value="Add to Cart" />
+
+
+
+	</form>
+		<form method="post" action="ControllerServlet">
+		<input type = "hidden" name = "movieId" value ="${movie.id}"  >
+		<input type="text" name="CommentText" /><br />
+		<input type="submit" name = "command" value="Comment" /><br />
+	</form>
+
+	<form method="get" action="ShoppingCart">
+		<input type="submit" value="Shopping Cart" /><br />
+	</form>
+	<form method="get" action="MainPage">
+		<input type="submit" value="Main Page" /> <br />
 	</form>
 </body>
 </html>

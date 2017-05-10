@@ -15,19 +15,24 @@ public class SearchFilm implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+
 		String name = request.getParameter("film");
 
 		String goTo = null;
+
 		try {
 
 			ServiceFactory serviceFactory = ServiceFactory.getInstance();
 			MovieService movieService = serviceFactory.getMovieService();
 			List<Movie> movieList = movieService.searchMovieByName(name);
+
 			request.setAttribute("movieList", movieList);
+
 			goTo = "/SearchResult.jsp";
-		 
+
 		} catch (ServiceException e) {
-			goTo = "/SearchResult.jsp";
+
+			goTo = "/ErrorPage.jsp";
 
 		}
 		return goTo;

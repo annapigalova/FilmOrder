@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TorentKiller</title>
+<title>CinemaWorld</title>
 </head>
 <body>
-	<h1>Welcome to Hell!</h1>
+	<h1>Welcome to Cinema World!</h1>
 
-	<form method="post" action="login.jsp">
+	<form method="get" action="Login">
 		<input type="submit" value="Log In" />
 	</form>
-	<form method="post" action="register.jsp">
+	<form method="get" action="Register">
 		<input type="submit" value="Register" />
 	</form>
+	
+
 </body>
 </html>
