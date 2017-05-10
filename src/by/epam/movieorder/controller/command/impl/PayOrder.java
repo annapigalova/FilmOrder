@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epam.movieorder.beans.Movie;
@@ -17,7 +16,7 @@ import by.epam.movieorder.service.factory.ServiceFactory;
 public class PayOrder implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request) {
 
 		String goTo = null;
 
@@ -36,7 +35,7 @@ public class PayOrder implements Command {
 			if (isPayOk) {
 
 				session.removeAttribute("movieList");
-				goTo = "/OrderHistory.jsp";
+				goTo = "/ShoppingCart.jsp";
 			} else {
 
 				throw new ServiceException();
@@ -44,7 +43,7 @@ public class PayOrder implements Command {
 
 		} catch (ServiceException e) {
 
-			goTo = "/ShoppingCart.jsp";
+			goTo = "/ErrorPage.jsp";
 		}
 		return goTo;
 

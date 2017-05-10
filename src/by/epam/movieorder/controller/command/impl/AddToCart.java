@@ -3,7 +3,6 @@ package by.epam.movieorder.controller.command.impl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import by.epam.movieorder.beans.Movie;
 import by.epam.movieorder.controller.command.Command;
@@ -12,7 +11,7 @@ import by.epam.movieorder.service.exception.ServiceException;
 public class AddToCart implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request) {
 
 		String movieIdStr = request.getParameter("movieId");
 
@@ -34,11 +33,11 @@ public class AddToCart implements Command {
 
 		List<Movie> movieList;
 
-		if (session.getAttribute("movieList") == null) {
+		Object movieListAttr = session.getAttribute("movieList");
+		if (movieListAttr == null || !(movieListAttr instanceof List<?>)) {
 			movieList = new ArrayList<>();
 		} else {
-
-			movieList = (ArrayList<Movie>) session.getAttribute("movieList");
+			movieList = (List<Movie>) movieListAttr;
 		}
 
 		movieList.add(movie);

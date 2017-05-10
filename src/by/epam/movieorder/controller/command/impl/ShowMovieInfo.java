@@ -3,7 +3,7 @@ package by.epam.movieorder.controller.command.impl;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import by.epam.movieorder.beans.Movie;
 import by.epam.movieorder.controller.command.Command;
 import by.epam.movieorder.service.MovieService;
@@ -13,7 +13,7 @@ import by.epam.movieorder.service.factory.ServiceFactory;
 public class ShowMovieInfo implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request) {
 
 		String idStr = request.getParameter("movieid");
 

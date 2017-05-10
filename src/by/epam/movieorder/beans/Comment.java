@@ -2,7 +2,7 @@ package by.epam.movieorder.beans;
 
 public class Comment {
 	private int id; 
-	private User user; //delete
+	private User user;  
 	private String comment;
  
 	

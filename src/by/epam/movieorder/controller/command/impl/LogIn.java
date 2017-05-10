@@ -1,7 +1,6 @@
 package by.epam.movieorder.controller.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epam.movieorder.beans.User;
@@ -13,7 +12,7 @@ import by.epam.movieorder.service.factory.ServiceFactory;
 public class LogIn implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request) {
 
 		String goTo = null;
 

@@ -1,21 +1,18 @@
 package by.epam.movieorder.controller.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.epam.movieorder.beans.Movie;
 import by.epam.movieorder.beans.User;
 import by.epam.movieorder.controller.command.Command;
 import by.epam.movieorder.service.CommentService;
-import by.epam.movieorder.service.OrderService;
 import by.epam.movieorder.service.exception.ServiceException;
 import by.epam.movieorder.service.factory.ServiceFactory;
 
 public class MakeComment implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public String execute(HttpServletRequest request) {
 
 		String goTo = null;
 
@@ -38,7 +35,7 @@ public class MakeComment implements Command {
 			isStatusOk = commentService.addComment(text, user, movieId);
 
 			if (isStatusOk) {
-				goTo = "/Film.jsp";
+				goTo =  request.getRequestURL().append('?').append((request.getParameter("url"))).toString();
 
 			} else {
 

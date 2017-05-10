@@ -9,12 +9,28 @@
 </head>
 <body>
 	<form method="get" action="ControllerServlet">
-		<c:out value="Name ${movie.name}" />
-		<c:out value="Director ${movie.director}" />
-		<c:out value="Genre ${movie.genre}" />
-		<c:out value="Duration ${movie.duration}" />
-		<c:out value="Description ${movie.description}" />
-		<c:out value="Description ${movie.price}" />
+
+
+		<c:out value="Name: ${movie.name}" />
+		<br />
+		<c:out value="Director: ${movie.director}" />
+		<br />
+		<c:out value="Genre: ${movie.genre}" />
+		<br />
+		<c:out value="Duration: ${movie.duration}" />
+		<br />
+		<c:out value="Description: ${movie.description}" />
+		<br />
+		<c:out value="Price: ${movie.price}" />
+		<br /> <br /> Comments: <br />
+
+		<c:forEach items="${movie.commentList}" var="comments"
+			>
+		       ${comments.user.login}: 
+			   ${comments.comment}
+			   	<br />
+		</c:forEach>
+
 		<input type="hidden" name="movieId" value="${movie.id}" /> <input
 			type="hidden" name="name" value="${movie.name}" /> <input
 			type="hidden" name="price" value="${movie.price}" /> <input
@@ -23,10 +39,11 @@
 
 
 	</form>
-		<form method="post" action="ControllerServlet">
-		<input type = "hidden" name = "movieId" value ="${movie.id}"  >
-		<input type="text" name="CommentText" /><br />
-		<input type="submit" name = "command" value="Comment" /><br />
+	<form method="post" action="ControllerServlet">
+		<input type="hidden" name="movieId" value="${movie.id}"> <input
+			type="text" name="CommentText" placeholder="Enter your comment here" /><br /> <input type="submit"
+			name="command" value="Comment" /><br /> <input type="hidden"
+			name="url" value="command=show-movie-info&movieid=${movie.id}" />
 	</form>
 
 	<form method="get" action="ShoppingCart">
@@ -35,5 +52,7 @@
 	<form method="get" action="MainPage">
 		<input type="submit" value="Main Page" /> <br />
 	</form>
+
+
 </body>
 </html>

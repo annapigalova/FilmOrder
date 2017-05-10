@@ -27,7 +27,7 @@ public class SQLMovieDao implements MovieDao {
 		try {
 			connection = OracleConnection.getConnection();
 
-			String query = "SELECT m.movie_id as movie_id,name,director,genre,duration,description,price,c.TEXT as commenttext, u.LOGIN as login FROM  movies m left join comments c on m.MOVIE_ID = c.COMMENT_ID left join USERS u on u.USER_ID = c.USER_ID where m.movie_id=?";
+			String query = "SELECT m.movie_id as movie_id,name,director,genre,duration,description,price,c.TEXT as commenttext, u.LOGIN as login FROM  movies m left join comments c on m.MOVIE_ID = c.MOVIE_ID left join USERS u on u.USER_ID = c.USER_ID where m.movie_id=?";
 
 			prepareSt = connection.prepareStatement(query);
 
@@ -76,9 +76,8 @@ public class SQLMovieDao implements MovieDao {
 
 				movie.addComment(comment);
 
-				return movie;
-
 			}
+			return movie;
 
 		} catch (SQLException e) {
 
@@ -98,7 +97,6 @@ public class SQLMovieDao implements MovieDao {
 				throw new DaoException();
 			}
 		}
-		return movie;
 	}
 
 	@Override

@@ -30,10 +30,11 @@ public class ControllerServlet extends HttpServlet {
 		String url = null;
 
 		commandName = request.getParameter(COMMAND_NAME);
+		System.out.println(commandName);
 		command = provider.getCommand(commandName);
 
 		try {
-			url = command.execute(request, response);
+			url = command.execute(request);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 
 			if (dispatcher != null) {
@@ -55,14 +56,15 @@ public class ControllerServlet extends HttpServlet {
 
 		commandName = request.getParameter(COMMAND_NAME);
 		command = provider.getCommand(commandName);
-
+		System.out.println(commandName);
 		try {
 
-			url = command.execute(request, response);
-			if (commandName == "Comment") {
+			url = command.execute(request);
 
-				response.setHeader("Refresh", "0; URL=" + request.getContextPath() + url);
+			if (commandName.equals("Comment")) {
+				response.sendRedirect(url);
 			} else {
+
 				response.sendRedirect(request.getContextPath() + url);
 			}
 		} catch (Exception e) {
