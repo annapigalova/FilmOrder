@@ -10,36 +10,45 @@
 </head>
 
 <body>
-	<c:out value="Hello, ${user.login}" />
-	<br />
-	<br />
-	 
-     <c:if test="${empty orderList}">
-     <c:out value="Unfortunately, you haven't made any orders yet" /> <br /><br />
-     </c:if>
-	<form method="get" action = "ControllerServlet">
-		<c:forEach items="${orderList}" var="order">
-		Order # ${order.id}<br />
-			<c:forEach items="${order.movieList}" var="movie">
-				<a
-					href="ControllerServlet?command=show-movie-info&movieid=${movie.id}">
-					${movie.name}<br />
-				</a>
-				<br />
-			</c:forEach>
-			<br />
-		</c:forEach>
-		 
-	</form>
-	
-	<form method="get" action="ShoppingCart">
-		<input type="submit" value="Shopping Cart" /><br />
-	</form>
-	
-   <form method="get" action="MainPage">
-         <input type="submit" value="Main Page" /> <br />
-      </form>
-</body>
 
+	<c:out value="Hello, ${user.login}" />
+	<c:if test="${empty orderList}">
+		<c:out value="Unfortunately, you haven't made any orders yet" />
+	</c:if>
+	<table>
+		<tr>
+			<td>
+				<form method="get" action="ShoppingCart">
+					<input type="submit" value="Shopping Cart" /><br />
+				</form>
+			</td>
+			<td>
+				<form method="get" action="MainPage">
+					<input type="submit" value="Main Page" /> <br />
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<table>
+
+		<form method="get" action="ControllerServlet">
+			<c:forEach items="${orderList}" var="order">
+				<tr>
+					<td>Order # ${order.id}</td>
+				<tr>
+
+					<c:forEach items="${order.movieList}" var="movie">
+						<tr>
+							<td><a
+								href="ControllerServlet?command=show-movie-info&movieid=${movie.id}">
+									${movie.name} </a></td>
+						</tr>
+
+					</c:forEach>
+			</c:forEach>
+		</form>
+	</table>
+</body>
 
 </html>

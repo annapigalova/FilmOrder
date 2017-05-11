@@ -11,7 +11,7 @@
 
 	<form method="post" action="ControllerServlet">
 		<input type="text" name="login" placeholder="LogIn" /><br /> <input
-			type="text" name="password" placeholder="Password" /><br /> <input
+			type="password" name="password" placeholder="Password" /><br /> <input
 			type="submit" name="command" value="Login" />
 	</form>
 	
