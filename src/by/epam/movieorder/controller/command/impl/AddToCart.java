@@ -1,10 +1,8 @@
 package by.epam.movieorder.controller.command.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import by.epam.movieorder.beans.Cart;
 import by.epam.movieorder.beans.Movie;
 import by.epam.movieorder.controller.command.Command;
@@ -14,6 +12,8 @@ public class AddToCart implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 
+		String goTo = null;
+		
 		String movieIdStr = request.getParameter("movieId");
 
 		int movieId = Integer.parseInt(movieIdStr);
@@ -46,8 +46,8 @@ public class AddToCart implements Command {
 		cart.addMovie(movie);
 
 		session.setAttribute("cart", cart);
-
-		return request.getRequestURL().append('?').append((request.getParameter("url"))).toString();
+		goTo = request.getParameter("url");
+		return goTo;
 	}
 
 }

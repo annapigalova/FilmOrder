@@ -1,11 +1,10 @@
 package by.epam.movieorder.controller.command.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import by.epam.movieorder.beans.Cart;
 import by.epam.movieorder.beans.Movie;
 import by.epam.movieorder.beans.User;
 import by.epam.movieorder.controller.command.Command;
@@ -17,24 +16,27 @@ public class PayOrder implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-
+		System.out.println("Pay1");
 		String goTo = null;
 
 		HttpSession session = request.getSession();
-
+		System.out.println("Pay2");
 		User user = (User) session.getAttribute("user");
+		System.out.println("Pay3");
 
-		List<Movie> movieList = (ArrayList<Movie>) session.getAttribute("movieList");
+		Cart cart = (Cart) session.getAttribute("cart");
+		List<Movie> movieList = cart.getMovieList();
+		System.out.println(movieList.size());
 
 		try {
 
 			ServiceFactory serviceFactory = ServiceFactory.getInstance();
 			OrderService orderService = serviceFactory.getOrderService();
 			boolean isPayOk = orderService.payOrder(movieList, user);
-
+			System.out.println(isPayOk);
 			if (isPayOk) {
 
-				session.removeAttribute("movieList");
+				session.removeAttribute("cart");
 				goTo = "/ShoppingCart.jsp";
 			} else {
 

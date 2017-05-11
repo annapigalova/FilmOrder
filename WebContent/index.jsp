@@ -12,7 +12,7 @@
 	<form method="post" action="ControllerServlet">
 		<input type="text" name="login" placeholder="LogIn" /><br /> <input
 			type="text" name="password" placeholder="Password" /><br /> <input
-			type="submit" name="command" value="Login" size = 25 />
+			type="submit" name="command" value="Login" />
 	</form>
 	
 	<form method="get" action="Register">

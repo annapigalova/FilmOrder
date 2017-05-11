@@ -35,14 +35,24 @@ public class ControllerServlet extends HttpServlet {
 
 		try {
 			url = command.execute(request);
-			 
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+
+			RequestDispatcher dispatcher;
+			if (commandName.equals("Add to Cart"))
+
+			{
+				dispatcher = request.getRequestDispatcher(url);
+			} else {
+
+				dispatcher = getServletContext().getRequestDispatcher(url);
+			}
 
 			if (dispatcher != null) {
+
 				dispatcher.forward(request, response);
 
 			}
 		} catch (Exception e) {
+
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -57,7 +67,7 @@ public class ControllerServlet extends HttpServlet {
 
 		commandName = request.getParameter(COMMAND_NAME);
 		command = provider.getCommand(commandName);
-		System.out.println(commandName);
+		System.out.println(commandName + "post");
 		try {
 
 			url = command.execute(request);
@@ -65,7 +75,7 @@ public class ControllerServlet extends HttpServlet {
 			if (commandName.equals("Comment")) {
 				response.sendRedirect(url);
 			} else {
-
+				System.out.println("post");
 				response.sendRedirect(request.getContextPath() + url);
 			}
 		} catch (Exception e) {

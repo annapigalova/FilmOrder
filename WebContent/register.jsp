@@ -10,7 +10,7 @@
 	<form method="post" action="ControllerServlet">
 
 		<table border='0' width='480px' cellpadding='0' cellspacing='0'
-			align='center'>
+			align='left'>
 			<tr>
 				<td align='center'>Login</td>
 				<td><input type="text" name="login" /></td>
@@ -56,13 +56,13 @@
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
-			<table border='0' cellpadding='0' cellspacing='0' width='480px'
-				align='center'>
-				<tr>
-					<td align='center'><input type="submit" name="command"
-						value="Register" /></td>
-				</tr>
-			</table>
+
+
+			<td align='center'><input type="submit" name="command"
+				value="Register" /></td>
+
+
+
 		</table>
 	</form>
 </body>

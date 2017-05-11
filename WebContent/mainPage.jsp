@@ -8,14 +8,26 @@
 </head>
 <body>
 	<form method="get" action="ControllerServlet">
-		Search Films:<input type="text" name="film" /> <input type="submit"
-			name="command" value="Search" /><br /> <input type="submit"
-			name="command" value="Order History" /> <br />
+		<table border="0">
+			<tr>
+				<td><input type="text" name="film" placeholder="Search..."
+					size=50 /><input type="submit" name="command" value="Search" /></td>
 
+			</tr>
+			<tr>
+				<td><input type="submit" name="command" value="Order History"
+					style="height: 22px; width: 150px" /></td>
+			</tr>
+		</table>
 	</form>
-
 	<form method="get" action="ShoppingCart">
-		<input type="submit" value="Shopping Cart" /><br />
+		<table border="0">
+
+			<tr>
+				<td><input type="submit" value="Shopping Cart"
+					style="height: 22px; width: 150px" /></td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>
