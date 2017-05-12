@@ -2,13 +2,15 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="movietag"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Film</title>
 </head>
 <body>
+
 	<form method="get" action="ControllerServlet">
 		<table border="0">
 			<tr>
@@ -19,8 +21,6 @@
 	</form>
 	<table border="0">
 		<tr>
-			<td>Name</td>
-			<td><c:out value="${movie.name}" /></td>
 			<td>
 				<form method="get" action="ControllerServlet">
 					<input type="hidden" name="movieId" value="${movie.id}" /> <input
@@ -32,32 +32,13 @@
 				</form>
 			</td>
 		</tr>
-		<tr>
-			<td>Director</td>
-			<td><c:out value="${movie.director}" /></td>
-		</tr>
-		<tr>
-			<td>Genre</td>
-			<td><c:out value="${movie.genre}" /></td>
-		</tr>
-		<tr>
-			<td>Duration</td>
-			<td><c:out value="${movie.duration}" /></td>
-		</tr>
-		<tr>
-			<td>Description</td>
-			<td><c:out value="${movie.description}" /></td>
-		</tr>
-		<tr>
-			<td>Price</td>
-			<td><c:out value="${movie.price}" /></td>
-		</tr>
-
 	</table>
+	<movietag:movietable movie="${movie}" />
 	<br /> Comments:
 	<br />
 	<c:forEach items="${movie.commentList}" var="comments">
-		<fmt:formatDate type = "both" dateStyle="medium" timeStyle="medium" value = "${comments.commentDt}" />  ${comments.user.login}: 
+		<fmt:formatDate type="both" dateStyle="medium" timeStyle="medium"
+			value="${comments.commentDt}" />  ${comments.user.login}: 
 			   ${comments.comment}
 			   	<br />
 	</c:forEach>

@@ -40,7 +40,7 @@ public class LogIn implements Command {
 
 		} catch (ServiceException e) {
 			
-			goTo = "/Login.jsp";
+			goTo = "/index.jsp";
 		}
 		return goTo;
 
