@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class SQLMovieDao implements MovieDao {
 		Connection connection = null;
 		PreparedStatement prepareSt = null;
 		ResultSet result = null;
-		Movie movie = new Movie();
+		Movie movie = null;
 
 		try {
 			connection = OracleConnection.getConnection();
 
-			String query = "SELECT m.movie_id as movie_id,name,director,genre,duration,description,price,c.TEXT as commenttext, u.LOGIN as login FROM  movies m left join comments c on m.MOVIE_ID = c.MOVIE_ID left join USERS u on u.USER_ID = c.USER_ID where m.movie_id=?";
+			String query = "SELECT m.movie_id as movie_id,name,director,genre,duration,description,price,c.TEXT as commenttext, u.LOGIN as login, c.comment_dttm as comment_dttm FROM  movies m left join comments c on m.MOVIE_ID = c.MOVIE_ID left join USERS u on u.USER_ID = c.USER_ID where m.movie_id=?";
 
 			prepareSt = connection.prepareStatement(query);
 
@@ -37,44 +38,52 @@ public class SQLMovieDao implements MovieDao {
 
 			while (result.next()) {
 
-				String movieName = result.getString("name");
+				if (movie == null) {
 
-				String director = result.getString("director");
+					movie = new Movie();
 
-				String genre = result.getString("genre");
+					String movieName = result.getString("name");
 
-				int duration = result.getInt("duration");
+					String director = result.getString("director");
 
-				String description = result.getString("description");
+					String genre = result.getString("genre");
 
-				double price = result.getDouble("price");
+					int duration = result.getInt("duration");
+
+					String description = result.getString("description");
+
+					double price = result.getDouble("price");
+
+					movie.setId(movieId);
+
+					movie.setName(movieName);
+
+					movie.setDirector(director);
+
+					movie.setGenre(genre);
+
+					movie.setDuration(duration);
+
+					movie.setDescription(description);
+
+					movie.setPrice(price);
+				}
+
+				String comentatorLogin = result.getString("login");
+				User user = new User();
+				user.setLogin(comentatorLogin);
 
 				String commentText = result.getString("commenttext");
 
-				String comentatorLogin = result.getString("login");
-
-				movie.setId(movieId);
-
-				movie.setName(movieName);
-
-				movie.setDirector(director);
-
-				movie.setGenre(genre);
-
-				movie.setDuration(duration);
-
-				movie.setDescription(description);
-
-				movie.setPrice(price);
-
-				User user = new User();
-				user.setLogin(comentatorLogin);
+				Timestamp commentDate = result.getTimestamp("comment_dttm");
 
 				Comment comment = new Comment();
 				comment.setUser(user);
 				comment.setComment(commentText);
-
+				comment.setCommentDt(commentDate);
 				movie.addComment(comment);
+
+				movie.sortByDt(movie.getCommentList());
 
 			}
 			return movie;

@@ -16,18 +16,17 @@ public class PayOrder implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		System.out.println("Pay1");
+		 
 		String goTo = null;
 
 		HttpSession session = request.getSession();
-		System.out.println("Pay2");
+ 
 		User user = (User) session.getAttribute("user");
-		System.out.println("Pay3");
+ 
 
 		Cart cart = (Cart) session.getAttribute("cart");
 		List<Movie> movieList = cart.getMovieList();
-		System.out.println(movieList.size());
-
+ 
 		try {
 
 			ServiceFactory serviceFactory = ServiceFactory.getInstance();

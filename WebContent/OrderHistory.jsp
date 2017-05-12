@@ -30,25 +30,25 @@
 		</tr>
 	</table>
 
-	<table>
-
-		<form method="get" action="ControllerServlet">
+	<form method="get" action="ControllerServlet">
+		<table>
 			<c:forEach items="${orderList}" var="order">
 				<tr>
 					<td>Order # ${order.id}</td>
-				<tr>
+					<td> ${order.orderDate}
+				</tr>
 
-					<c:forEach items="${order.movieList}" var="movie">
-						<tr>
-							<td><a
-								href="ControllerServlet?command=show-movie-info&movieid=${movie.id}">
-									${movie.name} </a></td>
-						</tr>
+				<c:forEach items="${order.movieList}" var="movie">
+					<tr>
+						<td><a
+							href="ControllerServlet?command=show-movie-info&movieid=${movie.id}">
+								${movie.name} </a></td>
+					</tr>
 
-					</c:forEach>
+				</c:forEach>
 			</c:forEach>
-		</form>
-	</table>
+			</form>
+		</table>
 </body>
 
 </html>

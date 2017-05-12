@@ -13,14 +13,14 @@
 			align='left'>
 			<tr>
 				<td align='center'>Login</td>
-				<td><input type="text" name="login" /></td>
+				<td><input type="text" name="login" required/></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td align='center'>Password</td>
-				<td><input type="password" name="password" /></td>
+				<td><input type="password" name="password" required /></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

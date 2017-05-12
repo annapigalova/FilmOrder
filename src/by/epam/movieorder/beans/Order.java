@@ -1,6 +1,7 @@
 package by.epam.movieorder.beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -9,6 +10,7 @@ public class Order {
 	private List<Movie> movieList = new ArrayList<>();
 	private double totalAmount;
 	private boolean isPay;
+	private Date orderDate;
 
 	public Order() {
 
@@ -50,6 +52,14 @@ public class Order {
 
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 
 }

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -56,7 +57,7 @@
 	<br /> Comments:
 	<br />
 	<c:forEach items="${movie.commentList}" var="comments">
-		       ${comments.user.login}: 
+		<fmt:formatDate type = "both" dateStyle="medium" timeStyle="medium" value = "${comments.commentDt}" />  ${comments.user.login}: 
 			   ${comments.comment}
 			   	<br />
 	</c:forEach>

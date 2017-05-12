@@ -30,7 +30,7 @@ public class ControllerServlet extends HttpServlet {
 		String url = null;
 
 		commandName = request.getParameter(COMMAND_NAME);
-		System.out.println(commandName);
+
 		command = provider.getCommand(commandName);
 
 		try {
@@ -67,7 +67,6 @@ public class ControllerServlet extends HttpServlet {
 
 		commandName = request.getParameter(COMMAND_NAME);
 		command = provider.getCommand(commandName);
-		System.out.println(commandName + "post");
 		try {
 
 			url = command.execute(request);
@@ -75,7 +74,6 @@ public class ControllerServlet extends HttpServlet {
 			if (commandName.equals("Comment")) {
 				response.sendRedirect(url);
 			} else {
-				System.out.println("post");
 				response.sendRedirect(request.getContextPath() + url);
 			}
 		} catch (Exception e) {

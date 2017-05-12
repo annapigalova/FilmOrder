@@ -1,6 +1,9 @@
 package by.epam.movieorder.beans;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Movie {
@@ -13,17 +16,15 @@ public class Movie {
 	private String description;
 	private double price;
 	private List<Comment> commentList = new ArrayList<>();
-	 
 
 	public Movie() {
-		 
+
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -83,7 +84,7 @@ public class Movie {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
+
 	public List<Comment> getCommentList() {
 		return commentList;
 	}
@@ -158,6 +159,21 @@ public class Movie {
 		return true;
 	}
 
-	
+	private static Comparator<Comment> sortByDtComparator = new Comparator<Comment>() {
+
+		@Override
+		public int compare(Comment o1, Comment o2) {
+
+			Timestamp dt1 = o1.getCommentDt();
+			Timestamp dt2 = o2.getCommentDt();
+			int result = dt1.compareTo(dt2);
+			return result;
+		}
+	};
+
+	public void sortByDt(List<Comment> commentList) {
+		Collections.sort(commentList, sortByDtComparator);
+
+	}
 
 }

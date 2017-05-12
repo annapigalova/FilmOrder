@@ -10,8 +10,8 @@
 	<h1>Welcome to Cinema World!</h1>
 
 	<form method="post" action="ControllerServlet">
-		<input type="text" name="login" placeholder="LogIn" /><br /> <input
-			type="password" name="password" placeholder="Password" /><br /> <input
+		<input type="text" name="login" placeholder="Login" required/><br /> <input
+			type="password" name="password" placeholder="Password" required /><br /> <input
 			type="submit" name="command" value="Login" />
 	</form>
 	

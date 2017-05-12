@@ -3,6 +3,9 @@ package by.epam.movieorder.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import by.epam.movieorder.beans.Comment;
 import by.epam.movieorder.beans.User;
@@ -21,7 +24,8 @@ public class SQLCommentDao implements CommentDao {
 		try {
 			connection = OracleConnection.getConnection();
 
-			String query = "INSERT INTO comments (comment_id, user_id, movie_id,  text) VALUES ( comments_seq.NEXTVAL,?,?,?)";
+			String query = "INSERT INTO comments (comment_id, user_id, movie_id,  text, comment_dttm ) VALUES ( comments_seq.NEXTVAL,?,?,?, "
+					+ "to_date('" + getCurrentTimeStamp() + "', 'yyyy-mm-dd hh24-mi-ss'))";
 
 			prepareSt = connection.prepareStatement(query);
 
@@ -41,6 +45,14 @@ public class SQLCommentDao implements CommentDao {
 			throw new DaoException(e);
 
 		}
+	}
+
+	private static String getCurrentTimeStamp() {
+
+		Date date = Calendar.getInstance().getTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		return sdf.format(date);
+
 	}
 
 }
